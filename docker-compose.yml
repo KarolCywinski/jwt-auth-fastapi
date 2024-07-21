@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  webapp:
+    build: .
+    environment:
+      JWT_ALGORITHM: ${JWT_ALGORITHM}
+      JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      MONGO_URL: ${MONGO_URL}
+      ADMIN_USER_USERNAME: ${ADMIN_USER_USERNAME}
+      ADMIN_USER_PASSWORD: ${ADMIN_USER_PASSWORD}
+    ports:
+      - "127.0.0.1:8000:8080"
